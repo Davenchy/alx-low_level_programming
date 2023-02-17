@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - prints 0..9 separated by ", " using putchar only
+ * main - print all 2 different digits numbers separated by ","
  *
  * Return: 0
  */
