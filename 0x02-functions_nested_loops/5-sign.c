@@ -11,10 +11,13 @@
 int print_sign(int n)
 {
 	int r = (n > 0) ? 1 : (n < 0) ? -1 : 0;
-	
-	if (r == 1) _putchar('+');
-	else if (r == -1) _putchar('-');
-	else _putchar('0');
-	
+
+	if (r == 1
+			_putchar('+');
+	else if (r == -1)
+		_putchar('-');
+	else
+		_putchar('0');
+
 	return (r);
 }
