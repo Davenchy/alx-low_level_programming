@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * times_table - print the @n times table.
+ * print_times_table - print the @n times table.
  * @n: must be in range 0 to 15
  * Return: void
  */
