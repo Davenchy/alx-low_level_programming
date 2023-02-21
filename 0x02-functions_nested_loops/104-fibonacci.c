@@ -6,18 +6,26 @@
  */
 int main(void)
 {
-	int i, limit = 98;
-	unsigned long a = 0, b = 1, f;
+	int i;
+	unsigned long j, k, j1, j2, k1, k2, c = 1000000000;
 
-	for (i = 0; i < limit; i++)
+	j = 1;
+	k = 2;
+	printf("%lu", j);
+	for (i = 1; i < 90; i++)
 	{
-		f = a + b;
-		a = b, b = f;
-		if (i < limit - 1)
-			printf("%lu, ", f);
-		else
-			printf("%lu\n", f);
+		printf(", %lu", k);
+		k = k + j;
+		j = k - j;
 	}
-
+	j1 = j / c, j2 = j % c;
+	k1 = k / c, k2 = k % c;
+	for (i = 0; i < 8; i++)
+	{
+		printf(", %lu%lu", k1 + (k2 / c), k2 % c);
+		k1 = k1 + j1, j1 = k1 - j1;
+		k2 = k2 + j2, j2 = k2 - j2;
+	}
+	printf("\n");
 	return (0);
 }
