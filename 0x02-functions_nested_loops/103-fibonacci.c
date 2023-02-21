@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-	unsigned long long sum = 0;
+	unsigned long sum = 0;
 	unsigned long a = 0, b = 1, f = 0;
 
 	while (f < 4000000)
@@ -17,6 +17,6 @@ int main(void)
 			sum += f;
 	}
 
-	printf("%llu\n", sum);
+	printf("%lu\n", sum);
 	return (0);
 }
