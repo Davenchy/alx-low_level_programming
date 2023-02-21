@@ -6,23 +6,17 @@
  */
 int main(void)
 {
-	int f = 3, a = 1, b = 2;
+	unsigned long i, a = 0, b = 1, f;
 
-	while (f < 50)
+	for (i = 0; i < 50; i++)
 	{
-		printf("%d", f);
-
 		f = a + b;
-		a = b;
-		b = f;
-
-		if (f < 50)
-			printf(", ");
+		a = b, b = f;
+		if (i < 49)
+			printf("%lu, ", f);
 		else
-		{
-			printf("\n");
-			break;
-		}
+			printf("%lu\n", f);
 	}
+
 	return (0);
 }
