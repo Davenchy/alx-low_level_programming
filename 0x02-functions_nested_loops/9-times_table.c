@@ -3,16 +3,19 @@
 /**
  * print_int - print int number of 2 digits as ascii text
  * @n: the number to print
+ * @ignore_second: set to 1 to ignore the tens field digit
  * Return: void
  */
-void print_int(int n)
+void print_int(int n, int ignore_second)
 {
 	int a, b;
 
 	b = (n % 10) + 48;
 	a = n > 9 ? (n / 10) + 48 : ' ';
 
-	_putchar(a);
+	if (!ignore_second)
+		_putchar(a);
+
 	_putchar(b);
 }
 
@@ -30,7 +33,7 @@ void times_table(void)
 		{
 			int v = i * j;
 
-			print_int(v);
+			print_int(v, j == 0);
 			if (j < 9)
 			{
 				_putchar(',');
