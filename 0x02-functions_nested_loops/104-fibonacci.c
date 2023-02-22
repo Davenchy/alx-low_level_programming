@@ -6,17 +6,20 @@
  */
 int main(void)
 {
-	unsigned int i, k;
-	unsigned long a, b, a2, b2;
+	unsigned int i;
+	unsigned long k, a, b, a2, b2;
 
-	/* use k to separate the large number into 2 halfs */
-	k = 100000000, a = 1, b = 2;
+	a = 1, b = 2;
 	printf("%lu", a);
 	for (i = 0; i < 90; i++)
 	{
 		printf(", %lu", b);
 		b += a, a = b - a;
 	}
+
+
+	/* use k to separate the large number into 2 halfs */
+	k = 1000000000;
 
 	/*
 	 * separate big number into 2 variables
@@ -29,7 +32,7 @@ int main(void)
 	/* calculate fibonacci for large numbers */
 	for (i = 0; i < 7; i++)
 	{
-		printf(", %lu%lu", b, b2);
+		printf(", %lu%lu", b + (b2 / k), b2 % k);
 		b += a, a = b - a;
 		b2 += a2, a2 = b2 - a2;
 	}
