@@ -1,31 +1,39 @@
 #include <stdio.h>
 
 /**
- * main - print the first 50 fibonacci number
+ * main - print the first 98 fibonacci number
  * Return: void
  */
 int main(void)
 {
-	int i;
-	unsigned long j, k, j1, j2, k1, k2, c = 1000000000;
+	unsigned int i, k;
+	unsigned long a, b, a2, b2;
 
-	j = 1;
-	k = 2;
-	printf("%lu", j);
-	for (i = 1; i < 90; i++)
+	/* use k to separate the large number into 2 halfs */
+	k = 100000000, a = 1, b = 2;
+	printf("%lu", a);
+	for (i = 0; i < 90; i++)
 	{
-		printf(", %lu", k);
-		k = k + j;
-		j = k - j;
+		printf(", %lu", b);
+		b += a, a = b - a;
 	}
-	j1 = j / c, j2 = j % c;
-	k1 = k / c, k2 = k % c;
-	for (i = 0; i < 8; i++)
+
+	/*
+	 * separate big number into 2 variables
+	 * x : first half
+	 * x2: seconnd half
+	 */
+	a2 = a % k, a /= k;
+	b2 = b % k, b /= k;
+
+	/* calculate fibonacci for large numbers */
+	for (i = 0; i < 7; i++)
 	{
-		printf(", %lu%lu", k1 + (k2 / c), k2 % c);
-		k1 = k1 + j1, j1 = k1 - j1;
-		k2 = k2 + j2, j2 = k2 - j2;
+		printf(", %lu%lu", b, b2);
+		b += a, a = b - a;
+		b2 += a2, a2 = b2 - a2;
 	}
+
 	printf("\n");
 	return (0);
 }
