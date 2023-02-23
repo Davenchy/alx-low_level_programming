@@ -1,7 +1,9 @@
 #include "main.h"
 
 /**
- *
+ * print_triangle - print right angle triangle of side @size
+ * @size: the side size
+ * Return: void
  */
 void print_triangle(int size)
 {
