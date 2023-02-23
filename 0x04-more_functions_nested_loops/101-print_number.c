@@ -1,19 +1,5 @@
 #include "main.h"
-
-/**
- * nearest_tens - find the nearest floored 10s to @n
- * @n: the number to stop search for 10s before
- * Return: the nearest floored 10s number to @n
- */
-int nearest_tens(int n)
-{
-	int t = 10;
-
-	while (n / t > 0)
-		t *= 10;
-
-	return (t / 10);
-}
+#include <stdio.h>
 
 /**
  * print_number - print number in ascii characters
@@ -22,37 +8,26 @@ int nearest_tens(int n)
  */
 void print_number(int n)
 {
-	int tens, k = 1000000000;
+	unsigned int a, tens = 1;
 
-	/* handle limits numbers */
-	if (n > k || n < -k)
+	if (n < 0)
 	{
-		int a;
-
-		a = n / k;
-		print_number(a);
-		n %= k;
-		tens = k;
-
-		if (n < 0)
-			n *= -1;
+		_putchar(45);
+		a = -n;
 	}
-	else
+	else 
 	{
-		if (n < 0)
-		{
-			_putchar('-');
-			n *= -1;
-		}
-		tens = nearest_tens(n);
+		a = n;
 	}
 
-	while (n > 0 || tens > 0)
-	{
-		char c = n / tens + '0';
+	/* find the nearest floored 10s to a*/
+	while (a / tens >= 10)
+		tens *= 10;
 
-		_putchar(c);
-		n %= tens;
+	while (a > 0 || tens > 0)
+	{
+		_putchar(a / tens + 48);
+		a %= tens;
 		tens /= 10;
 	}
 }
