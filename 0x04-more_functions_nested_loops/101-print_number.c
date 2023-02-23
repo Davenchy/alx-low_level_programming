@@ -10,10 +10,7 @@ int nearest_tens(int n)
 	int t = 10;
 
 	while (n / t > 0)
-	{
 		t *= 10;
-	}
-
 	return (t / 10);
 }
 
@@ -26,19 +23,14 @@ void print_number(int n)
 {
 	int tens;
 
-	if (n == 0)
-	{
-		_putchar('0');
-		return;
-	}
-	else if (n < 0)
+	if (n < 0)
 	{
 		_putchar('-');
 		n *= -1;
 	}
 
 	tens = nearest_tens(n);
-	while (n > 0)
+	while (n > 0 || tens > 0)
 	{
 		char c = n / tens + '0';
 
