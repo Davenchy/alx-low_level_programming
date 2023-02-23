@@ -1,5 +1,4 @@
 #include "main.h"
-#include "limits.h"
 
 /**
  * nearest_tens - find the nearest floored 10s to @n
@@ -8,10 +7,7 @@
  */
 int nearest_tens(int n)
 {
-	int t = 10, k = 1000000000;
-
-	if (n > k)
-		return (k);
+	int t = 10;
 
 	while (n / t > 0)
 		t *= 10;
@@ -26,15 +22,31 @@ int nearest_tens(int n)
  */
 void print_number(int n)
 {
-	int tens;
+	int tens, k = 1000000000;
 
-	if (n < 0)
+	/* handle limits numbers */
+	if (n > k || n < -k)
 	{
-		_putchar('-');
-		n *= -1;
+		int a;
+
+		a = n / k;
+		print_number(a);
+		n %= k;
+		tens = k;
+
+		if (n < 0)
+			n *= -1;
+	}
+	else
+	{
+		if (n < 0)
+		{
+			_putchar('-');
+			n *= -1;
+		}
+		tens = nearest_tens(n);
 	}
 
-	tens = nearest_tens(n);
 	while (n > 0 || tens > 0)
 	{
 		char c = n / tens + '0';
