@@ -13,9 +13,11 @@ void puts2(char *str)
 	{
 		a = *(str + i++);
 		b = *(str + i++);
-		if (a == '\0' || b == '\0')
+		if (a == '\0')
 			break;
 		_putchar(a);
+		if (b == '\0')
+			break;
 	}
 	_putchar('\n');
 }
