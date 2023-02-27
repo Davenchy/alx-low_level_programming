@@ -1,5 +1,8 @@
 /**
- *
+ * _strcpy - copies the string from @src to @dest
+ * @dest: the reference to copy to
+ * @src: the reference to copy from
+ * Return: the reference of @dest
  */
 char *_strcpy(char *dest, char *src)
 {
