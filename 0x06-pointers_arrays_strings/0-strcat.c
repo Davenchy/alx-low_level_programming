@@ -1,14 +1,17 @@
 /**
- *
+ * _strcat - concatenates strings @dest and @src to @dest
+ * @dest: the string to append @src to
+ * @src: the string to be appended to @dest
+ * Return: pointer to @dest
  */
 char *_strcat(char *dest, char *src)
 {
-	int i, j;
-	char c;
+	char *p = dest;
 
-	for (i = 0; *(dest + i); i++) {}
-	for (j = 0; (c = *(src + j)); j++)
-		*(dest + ++i) = c;
-
-	return (dest);
+	for (; *dest; dest++)
+		{}
+	for (; *src; src++, dest++)
+		*dest = *src;
+	*dest = 0;
+	return (p);
 }
