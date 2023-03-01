@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 /**
  * _strncpy - copy string from @src to @dest with @n bytes limit
  * @dest: the reference to copy to
