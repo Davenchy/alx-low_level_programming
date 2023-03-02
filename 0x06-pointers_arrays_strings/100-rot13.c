@@ -11,22 +11,22 @@ int rot13_in_range(char a, char z, char *c)
 	{
 		*c -= a;
 		*c = ((*c + 13) % 26) + a;
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 /**
  * rot13 - encode string using rot13
  * @str: the reference to string to encode
- * Return @str
+ * Return: @str
  */
 char *rot13(char *str)
 {
 	int i;
-	
+
 	for (i = 0; *(str + i); i++)
 		if (!rot13_in_range('a', 'z', str + i))
 			rot13_in_range('A', 'Z', str + i);
-	return str;
+	return (str);
 }
