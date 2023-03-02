@@ -12,11 +12,16 @@ char *_strncpy(char *dest, char *src, int n)
 	char *p = dest;
 
 	/* copy from src to dest */
-	for (; *dest && *src && n > 0; src++, dest++, n--)
+	for (; *src && n > 0; src++, dest++, n--)
 		*dest = *src;
 
+	/* set new end of string */
 	if (!*src)
 		*dest = *src;
+
+	/* write null for remaining bytes if exists */
+	for (; n > 0; n--, dest++)
+		*dest = 0;
 
 	return (p);
 }
