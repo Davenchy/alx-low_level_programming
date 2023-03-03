@@ -67,7 +67,7 @@ void print_buffer(char *b, int size)
 
 	for (i = 0; i < size; i += 10)
 	{
-		int r = size - i - 1;
+		int r = size - i;
 
 		print_formated_buffer(i, b, r < 10 ? r : 10);
 		if (r > 10)
