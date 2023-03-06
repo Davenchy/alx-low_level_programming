@@ -10,5 +10,5 @@ char *_strchr(char *s, char c)
 	for (; *s && *s != c; s++)
 		;
 
-	return s;
+	return (*s || *s == c  ? s : NULL);
 }
