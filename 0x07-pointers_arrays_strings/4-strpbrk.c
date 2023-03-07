@@ -1,27 +1,18 @@
-#include "main.h"
 #include <stdio.h>
+#include <string.h>
 
 /**
- * _strpbrk - bytes
- * @s: pointer to char
- * @accept: pointer to char
- * Return: NULL
+ * _strpbrk - find first accurrence for any char in @accept found in @s
+ * @s: the reference to string to be scanned
+ * @accept: chars to scan for in @s
+ * Return: pointer of first accurred char in @accept found in @s
+ *         otherwise return Null
  */
-
 char *_strpbrk(char *s, char *accept)
 {
-	int i;
+	for (; *s; s++)
+		if (strchr(accept, *s))
+			return (s);
 
-	while (*s)
-	{
-		for (i = 0; accept[i]; i++)
-		{
-			if (*s == accept[i])
-			{
-				return (s);
-			}
-		}
-		s++;
-	}
 	return (NULL);
 }
