@@ -1,32 +1,26 @@
-#include "main.h"
+#include <string.h>
 
 /**
-* _strstr - function locate
-* @haystack: pointer to char
-* @needle: pointer to char
-* Return: 0
-*/
-
+ * _strstr - locate the first accurrence of @needle in @haystack
+ * @haystack: the reference to string to be scanned
+ * @needle: the substring to locate in @haystack
+ * Return: pointer to first accourence of @needle in @haystack
+ *         otherwise returns NULL
+ */
 char *_strstr(char *haystack, char *needle)
 {
-	char *result = haystack, *fneedle = needle;
+	unsigned int len = strlen(needle);
 
-	while (*haystack)
+	while (haystack)
 	{
-		while (*needle)
+		haystack = strchr(haystack, *needle);
+		if (haystack)
 		{
-			if (*haystack++ != *needle++)
-			{
-				break;
-			}
+			if (!strncmp(haystack, needle, len))
+				return (haystack);
+			haystack++;
 		}
-		if (!*needle)
-		{
-			return (result);
-		}
-		needle = fneedle;
-		result++;
-		haystack = result;
 	}
-	return (0);
+
+	return (NULL);
 }
