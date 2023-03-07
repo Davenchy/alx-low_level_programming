@@ -11,6 +11,9 @@ char *_strstr(char *haystack, char *needle)
 {
 	unsigned int len = strlen(needle);
 
+	if (!len)
+		return (haystack);
+
 	while (haystack)
 	{
 		haystack = strchr(haystack, *needle);
