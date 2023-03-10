@@ -7,7 +7,7 @@
  *        represents the arguments list
  * Return: 0 (success_code)
  */
-int main(int argc, char **argv __attribute__((unused)))
+int main(int argc, char **argv)
 {
 	int i;
 
