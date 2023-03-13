@@ -15,14 +15,14 @@ int **alloc_grid(int width, int height)
 		return (NULL);
 
 	/* allocate array of pointer to int[] */
-	nums = calloc(width, sizeof(int *));
+	nums = calloc(height, sizeof(int *));
 	if (!nums)
 		return (NULL);
 
-	for (i = 0; i < width; i++)
+	for (i = 0; i < height; i++)
 	{
 		/* allocate pointer to int[] */
-		nums[i] = calloc(height, sizeof(int));
+		nums[i] = calloc(width, sizeof(int));
 		/* break on fail and set failed to last index */
 		if (!nums[i])
 		{
