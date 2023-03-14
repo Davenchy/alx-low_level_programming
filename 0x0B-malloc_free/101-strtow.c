@@ -4,6 +4,8 @@
 /**
  * count_words - counts the number of words in string
  * @str: the reference to the string
+ * Description:
+ * returns zero if @str is NULL
  *
  * Return: the number of words in @str
  */
@@ -11,6 +13,8 @@ int count_words(char *str)
 {
 	int i, inword = 0, count = 0;
 
+	if (!str)
+		return (0);
 	for (i = 0; str[i]; i++)
 		if (str[i] == 32)
 			inword = 0;
@@ -29,10 +33,12 @@ char **strtow(char *str)
 	int count, i;
 	char **words;
 
-	/* remove begging white space */
-	str = str + strspn(str, " ");
 	/* count words */
 	count = count_words(str);
+	if (!count)
+		return (NULL);
+	/* remove begging white space */
+	str = str + strspn(str, " ");
 	/* allocate words list */
 	words = calloc(count + 1, sizeof(char *));
 	for (i = 0; i < count; i++)
