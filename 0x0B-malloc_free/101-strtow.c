@@ -1,11 +1,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define WORD_S 3
-#define WORDS_S 3
+/**
+ * count_words - counts the number of words in string
+ * @str: the reference to the string
+ *
+ * Return: the number of words in @str
+ */
+int count_words(char *str)
+{
+	int i, inword = 0, count = 0;
 
-#define CS sizeof(char)
-#define CPS sizeof(char *)
+	for (i = 0; str[i]; i++)
+		if (str[i] == 32)
+			inword = 0;
+		else if (!inword)
+			inword = 1, count++;
+	return (count);
+}
 
 /**
  * strtow - split words in @str into words list
@@ -14,29 +26,32 @@
  */
 char **strtow(char *str)
 {
+	int count, i;
 	char **words;
-	int wsi = 0, wi = 0, ws = WORD_S;
 
-	words = calloc(2, CPS);
-	words[0] = calloc(WORD_S, CS);
-	for (; *str; str++)
+	/* remove begging white space */
+	str = str + strspn(str, " ");
+	/* count words */
+	count = count_words(str);
+	/* allocate words list */
+	words = calloc(count + 1, sizeof(char *));
+	for (i = 0; i < count; i++)
 	{
-		if (*str == 32)
-		{
-			if (!wi)
-				continue;
-			words[wsi] = realloc(words[wsi], wi + 1);
-			words[++wsi] = calloc(WORD_S, CS);
-			words = realloc(words, CPS * (2 + wsi));
-			memset(words + wsi + 1, 0, CPS);
-			wi = 0, ws = WORD_S;
-		}
-		else
-		{
-			if (wi < ws)
-				ws += WORD_S, words[wsi] = realloc(words[wsi], ws);
-			words[wsi][wi++] = *str;
-		}
+		/* count word characters */
+		int len = strcspn(str, " ");
+		/* allocate string with required length */
+		words[i] = calloc(len + 1, sizeof(char));
+		/* handle allocation error */
+		if (!words[i])
+			goto clean;
+		/* copy string to the allocated memory */
+		strncpy(words[i], str, len);
+		/* move forward to the begin of the next word */
+		str = str + len + strspn(str + len, " ");
 	}
 	return (words);
+clean:
+	for (; *words; words++)
+		free(*words);
+	return (NULL);
 }
