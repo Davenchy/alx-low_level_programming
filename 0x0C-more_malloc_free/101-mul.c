@@ -1,46 +1,30 @@
 #include <stdio.h>
-#include <ctype.h>
 #include <stdlib.h>
 
 /**
- * isvalid - check if inputed string is a valid number
- * @input: the string to check
- *
- * Return: 1 if @input is a string with a digits only
- *         otherwise returns 0
+ * main - multiplies two positive numbers
+ * @argc: n arguments
+ * @argv: args
+ * Return: int
  */
-int isvalid(char *input)
+int main(int argc, char *argv[])
 {
-	for (; *input; input++)
-		if (!isdigit(*input))
-			return (0);
-	return (1);
-}
-
-/**
- * main - a program to multiply two arguments to gether
- * @argc: number of arguments
- * @argv: the arguments array
- *
- * Return: exit status
- */
-int main(int argc, char **argv)
-{
-	int num1, num2;
-
-	/* check for valid input */
-	if (argc != 3 || !isvalid(argv[1]) || !isvalid(argv[2]))
+unsigned long mul;
+int i, j;
+	if (argc != 3)
+	{ printf("Error\n");
+	exit(98); }
+	for (i = 1; i < argc; i++)
 	{
-		puts("Error");
-		return (98);
+		for (j = 0; argv[i][j] != '\0'; j++)
+		{
+			if (argv[i][j] > 57 || argv[i][j] < 48)
+			{  printf("Error\n");
+			exit(98); }
+		}
+
 	}
-
-	/* store and convert arguments from string to integers */
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[2]);
-
-	/* print the result */
-	printf("%d\n", num1 * num2);
-
+	mul = atol(argv[1]) *  atol(argv[2]);
+	printf("%lu\n", mul);
 	return (0);
 }
