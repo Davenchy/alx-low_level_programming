@@ -3,49 +3,45 @@
 #include "dog.h"
 
 /**
- * new_dog - create new dog structure
- * @name: the dog's name
- * @age: the dog's age
- * @owner: the dog's owner
+ * new_dog - creates a new dog
+ * @name: name of the dog
+ * @age: age of the dog
+ * @owner: owner of the dog
  *
- * Return: pointer to the dog struct otherwise NULL on fail
+ * Return: pointer to the new dog (Success), NULL otherwise
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *d;
+	int namel, ownerl;
 
-	/* allocate memory for the struct */
-	d = malloc(sizeof(char *) * 2 + sizeof(float));
+	if (!name || !owner)
+		return (NULL);
 
-	/* initialize the struct */
-	if (d)
-	{
-		/* if name is not NULL */
-		if (name)
-		{
-			/* copy name or clear on fail*/
-			d->name = strdup(name);
-			if (!(d->name))
-			{
-				free(d);
-				return (NULL);
-			}
-		}
-		d->age = age;
-		/* if owner is not null */
-		if (owner)
-		{
-			/* copy owner or clear on null */
-			d->owner = strdup(owner);
-			if (!(d->owner))
-			{
-				/* if name is already defined the free the copy */
-				if (d->name)
-					free(d->name);
-				free(d);
-				return (NULL);
-			}
-		}
-	}
+	d = malloc(sizeof(dog_t));
+	if (!d)
+		return (NULL);
+
+	namel = strlen(name);
+	ownerl = strlen(owner);
+
+	d->name = malloc((namel + 1) * sizeof(char));
+	if (!d->name)
+		goto free_dog;
+
+	d->owner = malloc((ownerl + 1) * sizeof(char));
+	if (!d->owner)
+		goto free_name;
+
+	strcpy(d->name, name);
+	strcpy(d->owner, owner);
+	d->age = age;
+
 	return (d);
+
+free_name:
+	free(d->name);
+free_dog:
+	free(d);
+	return (NULL);
 }
