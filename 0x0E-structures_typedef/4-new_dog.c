@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "dog.h"
 
 /**
@@ -19,9 +20,32 @@ dog_t *new_dog(char *name, float age, char *owner)
 	/* initialize the struct */
 	if (d)
 	{
-		d->name = name;
+		/* if name is not NULL */
+		if (name)
+		{
+			/* copy name or clear on fail*/
+			d->name = strdup(name);
+			if (!(d->name))
+			{
+				free(d);
+				return (NULL);
+			}
+		}
 		d->age = age;
-		d->owner = owner;
+		/* if owner is not null */
+		if (owner)
+		{
+			/* copy owner or clear on null */
+			d->owner = strdup(owner);
+			if (!(d->owner))
+			{
+				/* if name is already defined the free the copy */
+				if (d->name)
+					free(d->name);
+				free(d);
+				return (NULL);
+			}
+		}
 	}
 	return (d);
 }
