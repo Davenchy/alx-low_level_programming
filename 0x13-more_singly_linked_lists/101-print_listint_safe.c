@@ -16,7 +16,7 @@ size_t print_listint_safe(const listint_t *head)
 	void **pointers;
 
 	if (!head)
-		exit(98);
+		return (0);
 	/* init pointers list */
 	pointers = calloc(size, sizeof(void *));
 	if (!pointers)
