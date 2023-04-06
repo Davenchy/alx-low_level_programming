@@ -1,0 +1,14 @@
+/**
+ * set_bit - set bit value of @n to 1 at the given @index
+ * @n: pointer to the number to modify
+ * @index: the index of the bit
+ *
+ * Return: 1 if success otherwise -1 on fail
+ */
+int set_bit(unsigned long int *n, unsigned int index)
+{
+	if (!n)
+		return (-1);
+	*n |= 1 << index;
+	return (1);
+}
