@@ -24,7 +24,7 @@ void print_header_hex(Elf64_Ehdr *header)
 	printf("  Magic:  ");
 	for (i = 0; i < 16;  i++)
 		printf(" %02x", header->e_ident[i]);
-	putchar(10);
+	printf(10);
 }
 
 /**
