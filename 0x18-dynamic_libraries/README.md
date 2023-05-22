@@ -10,16 +10,16 @@
 cd src/
 ```
 
-- Build all c source files to object files
+- Build all c source files to object files without linking
 
 ```sh
-gcc -Wall -Werror -Wextra -pedantic -c *.c
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -c *.c
 ```
 
 - Create the dynamic library with name `libdynamic.so`
 
 ```sh
-gcc -Wall -Werror -Wextra -pedantic *.o -fPIC -o libdynamic.so
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.o -fPIC -o libdynamic.so
 ```
 
 - Move the dynamic library to the repo root to ease building of the test program
@@ -37,7 +37,7 @@ rm *.o
 output an executable with the name `len`
 
 ```sh
-gcc -Wall -Werror -Wextra -pedantic -L. 0-main.c -ldynamic -o len
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -L. 0-main.c -ldynamic -o len
 ```
 
 ### Run
