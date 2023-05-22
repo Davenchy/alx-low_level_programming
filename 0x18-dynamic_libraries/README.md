@@ -1,5 +1,11 @@
 # 0x18-dynamic_libraries
 
+## Create Dynamic Library Script
+
+- `1-create_dynamic_lib.sh` is a bash script that builds all c source files in
+the current working directory and generates a dynamic library from them
+with the name `liball.so`.
+
 ## Build
 
 ### Build The Library (The Shared Object)
