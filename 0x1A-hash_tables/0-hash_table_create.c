@@ -1,5 +1,6 @@
 #include "hash_tables.h"
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * hash_table_create - creates a new hash table
@@ -16,6 +17,7 @@ hash_table_t *hash_table_create(unsigned long int size)
 
 	table->size = size;
 	table->array = (hash_node_t **)(table + 1);
+	memset(table->array, 0, sizeof(hash_node_t *) * size);
 	return (table);
 }
 
