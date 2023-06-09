@@ -33,17 +33,19 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (!node)
 		return (0);
 
-	node->key = (char *)key;
+	node->key = strdup(key);
 	node->value = strdup(value);
 	node->next = NULL;
-	if (!node->value)
-	{
-		free(node);
-		return (0);
-	}
+	if (!node->key || !node->value)
+		goto kill;
 
 	if (ht->array[index])
 		node->next = ht->array[index];
 	ht->array[index] = node;
 	return (1);
+kill:
+	if (node->key)
+		free(node->key);
+	free(node);
+	return (0);
 }
