@@ -28,19 +28,30 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	/* get the index of the value */
 	index = key_index((const unsigned char *)key, ht->size);
-	/* allocates a new node */
+	node = ht->array[index];
+	while (node)
+	{
+		if (!strcmp(key, node->key))
+		{
+			char *temp = strdup(value);
+
+			if (!node->value)
+				return (0);
+			free(node->value);
+			node->value = temp;
+			return (1);
+		}
+		node = node->next;
+	}
+
 	node = malloc(sizeof(hash_node_t));
 	if (!node)
 		return (0);
-
 	node->key = strdup(key);
 	node->value = strdup(value);
-	node->next = NULL;
+	node->next = ht->array[index] ? ht->array[index] : NULL;
 	if (!node->key || !node->value)
 		goto kill;
-
-	if (ht->array[index])
-		node->next = ht->array[index];
 	ht->array[index] = node;
 	return (1);
 kill:

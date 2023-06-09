@@ -42,6 +42,8 @@ int main(void)
 	hash_table_set(ht, "betty", "cool");
 	hash_table_set(ht, "hetairas", "cool1");
 	hash_table_set(ht, "mentioner", "cool2");
+	hash_table_print(ht);
+	hash_table_set(ht, "betty", "cool0");
 	printf("betty: %lu\n",
 				key_index((const unsigned char *)"betty", ht->size));
 	printf("hetairas: %lu\n",
@@ -52,5 +54,7 @@ int main(void)
 	print_key_all(ht, "betty");
 	puts("--------------");
 	print_key_all(ht, "hetairas");
+	hash_table_print(ht);
+	hash_table_delete(ht);
 	return (EXIT_SUCCESS);
 }
