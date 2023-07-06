@@ -1,45 +1,24 @@
 #include "main.h"
 
 /**
- * len - convert @b to binary number and return how many bits in it
- * @b: integer number
- * Return: how many bits in @b
- */
-unsigned long int len(unsigned long int b)
-{
-	unsigned long int len;
-
-	len = 0;
-	while (b > 0)
-	{
-		b >>= 1;
-		len++;
-	}
-	return (len);
-}
-
-/**
- * print_binary - print binary value of decimal number using bitwise operators
- * @n: decimal number
- * Return: void
+ * print_binary - print number in base2
+ * @n: the number to print
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int i, n_len;
+	unsigned int bits;
+	char first = 1;
 
-	if (!n)
-		_putchar('0');
-
-	n_len = len(n);
-	for (i = 0; i < n_len; i++)
+	for (bits = sizeof(n) * 8; bits > 0; bits--)
 	{
-		if ((n & (1 << (n_len - 1 - i))) > 0)
+		char bit = (n >> (bits - 1)) & 0x01;
+
+		if (bit || (!bit && !first) || !n)
 		{
-			_putchar('1');
+			first = 0;
+			_putchar(bit + '0');
 		}
-		else
-		{
-			_putchar('0');
-		}
+		if (!n)
+			break;
 	}
 }
