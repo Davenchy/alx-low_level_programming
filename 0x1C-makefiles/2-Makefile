@@ -1,6 +1,7 @@
 NAME=school
 SRC=main.c school.c
 OBJ=$(SRC:.c=.o)
+CC=gcc
 
 .PHONY: all
 all: $(OBJ)
